@@ -1,0 +1,28 @@
+{
+  "name": "rickandmorty-web-services",
+  "version": "1.0.0",
+  "description": "A web services api REST that get information from the characters from Rick and Morty",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "nodemon index"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sevillecarlos/rickandmorty-web-services.git"
+  },
+  "author": "Carlos A. Sevilla",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sevillecarlos/rickandmorty-web-services/issues"
+  },
+  "homepage": "https://github.com/sevillecarlos/rickandmorty-web-services#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "joi": "^17.6.0",
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}
