@@ -3,8 +3,9 @@ const { get } = require("axios");
 const characterInfoFormatter = require("../helpers/");
 const { isEqual } = require("lodash");
 const { URL, STATUS_QUERY } = require("../config");
-const { characterStatusValidator } = require("../validation");
-const Joi = require("joi");
+const {
+  characterStatusValidator,
+} = require("../validators/character-status.validator");
 
 router.get("/all-characters", async (_, res) => {
   try {
@@ -16,7 +17,7 @@ router.get("/all-characters", async (_, res) => {
 
     res.status(200).json(charactersInfo);
   } catch (error) {
-    res.status(400).json({ error });
+    res.status(400).json({ error: error.message });
   }
 });
 
@@ -25,19 +26,22 @@ router.get("/character/:id", async (req, res) => {
     params: { id },
   } = req;
 
-  const result = Joi.validate(id, characterStatusValidator);
-  const charactersInfo = characterInfoFormatter(result, id);
-  const valid = error == null;
-
   try {
+    const { error } = characterStatusValidator.validate({ id });
+    if (error) throw new Error(error);
+
+    if (!isEqual(id, "alive"))
+      throw new Error("The only status allow is Alive");
+
     const {
       data: { results },
     } = await get(`${URL}${STATUS_QUERY}${id}`);
 
+    const charactersInfo = characterInfoFormatter(results);
+
     res.status(200).json(charactersInfo);
   } catch (error) {
-    console.log("error", error);
-    res.status(400).send({ error });
+    res.status(400).send({ error: error.message });
   }
 });
 
