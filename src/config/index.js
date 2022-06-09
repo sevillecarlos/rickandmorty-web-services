@@ -1,3 +1,3 @@
 const URL = "https://rickandmortyapi.com/api/character";
-
-module.exports = URL;
+const STATUS_QUERY = "/?status=";
+module.exports = { URL, STATUS_QUERY };
