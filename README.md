@@ -14,7 +14,7 @@ npm run start
 
 To get all characters
 
-[https://web-services-rickandmorty.herokuapp.com/characters/:id](https://web-services-rickandmorty.herokuapp.com/all-characters)
+[https://web-services-rickandmorty.herokuapp.com/character/:id](https://web-services-rickandmorty.herokuapp.com/all-characters)
 
 ### id: 
 ```
